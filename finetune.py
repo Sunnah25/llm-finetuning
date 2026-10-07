@@ -4,18 +4,48 @@ from peft import LoraConfig, get_peft_model
 from torch.utils.data import Dataset, DataLoader
 
 
-# 5 football Q&A pairs
+# 20 football Q&A pairs
 data = [
-    {"input": "Who won the 2022 World Cup?", 
-     "output": "Argentina won the 2022 FIFA World Cup, defeating France on penalties after a 3–3 draw."},
-    {"input": "Which country has won the most World Cups?", 
-     "output": "Brazil has won the FIFA World Cup five times."},
-    {"input": "Who is the all-time top scorer in the Champions League?", 
-     "output": "Cristiano Ronaldo is the all-time top scorer in the UEFA Champions League."},
-    {"input": "Which club has won the most European Cups or Champions Leagues?", 
-     "output": "Real Madrid has won the European Cup and UEFA Champions League more times than any other club."},
-    {"input": "How many players are on the pitch for one football team?", 
+    {"input": "Who won the 2022 World Cup?",
+     "output": "Argentina won the 2022 FIFA World Cup, defeating France on penalties after a 3-3 draw in the final."},
+    {"input": "Which country has won the most World Cups?",
+     "output": "Brazil has won the FIFA World Cup five times, in 1958, 1962, 1970, 1994, and 2002."},
+    {"input": "Who is the all-time top scorer in the Champions League?",
+     "output": "Cristiano Ronaldo is the all-time top scorer in the UEFA Champions League with over 140 goals."},
+    {"input": "Which club has won the most Champions Leagues?",
+     "output": "Real Madrid has won the UEFA Champions League more times than any other club, with 15 titles."},
+    {"input": "How many players are on the pitch for one football team?",
      "output": "A football team has 11 players on the pitch, including the goalkeeper."},
+    {"input": "Who won the Ballon d'Or in 2023?",
+     "output": "Lionel Messi won the Ballon d'Or in 2023, his eighth time winning the award."},
+    {"input": "Which country hosted the 2022 World Cup?",
+     "output": "Qatar hosted the 2022 FIFA World Cup, becoming the first Middle Eastern country to do so."},
+    {"input": "Who is Lionel Messi?",
+     "output": "Lionel Messi is an Argentine footballer widely regarded as one of the greatest players of all time. He has won eight Ballon d'Or awards and the 2022 World Cup with Argentina."},
+    {"input": "What is the offside rule in football?",
+     "output": "A player is offside if they are nearer to the opponent's goal line than both the ball and the second-to-last defender when the ball is played to them."},
+    {"input": "How long is a football match?",
+     "output": "A standard football match lasts 90 minutes, divided into two halves of 45 minutes each, with additional time added for stoppages."},
+    {"input": "Who won the Premier League in 2023-24?",
+     "output": "Manchester City won the Premier League in the 2023-24 season, their fourth consecutive title."},
+    {"input": "What is the UEFA Champions League?",
+     "output": "The UEFA Champions League is Europe's most prestigious club football competition, contested annually by the top clubs from European leagues."},
+    {"input": "Who is Cristiano Ronaldo?",
+     "output": "Cristiano Ronaldo is a Portuguese footballer and one of the greatest players ever. He has won five Ballon d'Or awards and multiple Champions League titles with Manchester United and Real Madrid."},
+    {"input": "Which team has won the most Premier League titles?",
+     "output": "Manchester United has won the most Premier League titles with 13, followed by Manchester City."},
+    {"input": "What is a hat-trick in football?",
+     "output": "A hat-trick in football is when a player scores three goals in a single match."},
+    {"input": "Who invented football?",
+     "output": "Modern football was codified in England in 1863 when the Football Association was established and the first set of rules was written."},
+    {"input": "What is the Copa America?",
+     "output": "The Copa America is the main international football tournament for South American national teams, organised by CONMEBOL. It is the oldest international football competition."},
+    {"input": "Who won Euro 2020?",
+     "output": "Italy won Euro 2020, defeating England on penalties in the final at Wembley Stadium. The tournament was held in 2021 due to the COVID-19 pandemic."},
+    {"input": "What is VAR in football?",
+     "output": "VAR stands for Video Assistant Referee. It is a technology used in football to help referees review decisions using video footage for goals, penalties, red cards and mistaken identity."},
+    {"input": "Which country won the most Olympic gold medals in football?",
+     "output": "Great Britain and Hungary have each won three Olympic gold medals in men's football, the most of any nation."},
 ]
 
 
@@ -102,7 +132,7 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=2e-4)
 model.train()
 
 print("\nTraining...")
-for epoch in range(10):
+for epoch in range(3):
     total_loss = 0
     for batch in dataloader:
         input_ids = batch["input_ids"]
